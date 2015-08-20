@@ -59,7 +59,7 @@
             <div id="imaginary_container"> 
                 <div class="input-group stylish-input-group">
                     <div data-tip="If a video is already in playback, hit enter after typing your query to change">
-                    <input type="text" id="query" class="form-control input-lg"  placeholder="Search" >
+                    <input id="btnSearch" type="text" id="query" class="form-control input-lg"  placeholder="Search" >
                     </div>
                     <div class="input-group-addon">
                         <button type="submit" >
@@ -228,6 +228,9 @@
   ga('create', 'UA-56746183-1', 'auto');
   ga('send', 'pageview');
 
+    $(document).ready(function(){
+        $("#btnSearch").focus();
+    });
 </script>
 </body>
 
