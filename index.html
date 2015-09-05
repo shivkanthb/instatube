@@ -119,6 +119,8 @@
 <script src="https://www.youtube.com/iframe_api"></script>
 <script type="text/javascript">
 
+    var ASCII= {esc:27};
+    
   var player, playerReady = false;
 
   function onYouTubeIframeAPIReady() {
@@ -163,7 +165,42 @@
       }
     }, 1000);
 
+    $('#query').keydown(function(e){
+        if(e.keyCode===ASCII.esc) 
+        {
+        $("#query").val("");
+        $("#query").focus();
+            return;
+        }
+        if(e.shiftKey)
+        {
+            e.preventDefault();
+            if(e.keyCode!==16)
+            {
+            var keycode=e.keyCode-48;
+            var keyIdElements=$('[data-keyid]');
+                for(var i=0;i<keyIdElements.length;i++)
+                {
+                    if(keyIdElements[i].getAttribute('data-keyid')==keycode)
+                    {
+                        var videoId=keyIdElements[i].getAttribute('data-id');
+                        firstVideo=false;
+                        player.loadVideoById({ videoId: videoId });
+                        return;
+                    }
+                }
+            }
+            return;
+        }
+    });  
+      
     $('#query').keyup(function (e) {
+         if(e.shiftKey || e.keyCode==16)
+        {
+            e.preventDefault();
+            return;
+        }
+        
       e.preventDefault();
       params.q = $('#query').val();
       $.get(url, params, function (data) {
@@ -172,22 +209,27 @@
         items.forEach(function (item,keyid) {
           $searchContainer
               .append('<div class="list-item col-md-2 col-sm-2 col-xs-2"><a data-keyid="'+(keyid+1)+'"href="http://www.youtube.com/embed/' + item.id.videoId + '" data-id="' + item.id.videoId + '" class="video"><img src="' + item.snippet.thumbnails.default.url + '" class="thumb"></a><div class="videoTitle">' + item.snippet.title + '</div></div>');
-            console.log("apend");
           firstVideo = true;
         });
       });
     });
     
     $('#query').keypress(function(e) {
-    if(e.which == 13) {
+    if(e.keyCode  == 13) { //which doesn't work in IE
+        //todo: doesn't seem like working
       e.preventDefault();
       if (playerReady) {
         var videoid = $(this).data('id');
         player.loadVideoById({ videoId: videoid });
       }
     }
+        
     });
     
+      $(document).keydown(function(e){
+        
+});
+      
     $('.js-toggle-btn').click(function (e) {
       e.preventDefault();
       if (!$(this).data('status')) {
@@ -212,7 +254,6 @@
       e.preventDefault();
       if (playerReady) {
         var videoid = $(this).data('id');
-          console.log(videoid);
         player.loadVideoById({ videoId: videoid });
       }
     });
