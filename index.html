@@ -18,7 +18,7 @@
     <!-- Custom CSS -->
     <link href="css/portfolio-item.css" rel="stylesheet">
 
-    <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,12 +28,12 @@
 
 <style>
 .videoTitle {
-  color: #FFF !important;
+  color: #333 !important;
 }
 </style>
 </head>
 
-<body style="background-color:black">
+<body style="background-color:#FBFBFB">
 
 
   <!-- <div id="fb-root"></div> -->
@@ -89,9 +89,9 @@
         <!-- Portfolio Item Row -->
     <div class="row">
     <div class="col-md-4 col-md-offset-4"> 
-      <div id="player"></div>
+      <div id="player" style="visibility:hidden"></div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-top:15px">
       <div id="search-container" class="search-results row"></div>
     </div>
   </div>
@@ -141,7 +141,7 @@
       part: "snippet",
       q: 'AOE 2',
       type: "video",
-      maxResults: 18,
+      maxResults: 12,
       key: "AIzaSyBdf2V7kHNAptDw2LNnxviDPmF8UC6hXgo"
     };
     var videoParams = {
@@ -195,6 +195,7 @@
     });  
       
     $('#query').keyup(function (e) {
+        $('#player').css("visibility", "visible");
          if(e.shiftKey || e.keyCode==16)
         {
             e.preventDefault();
@@ -208,7 +209,7 @@
         $searchContainer.html('');
         items.forEach(function (item,keyid) {
           $searchContainer
-              .append('<div class="list-item col-md-2 col-sm-2 col-xs-2"><a data-keyid="'+(keyid+1)+'"href="http://www.youtube.com/embed/' + item.id.videoId + '" data-id="' + item.id.videoId + '" class="video"><img src="' + item.snippet.thumbnails.default.url + '" class="thumb"></a><div class="videoTitle">' + item.snippet.title + '</div></div>');
+              .append('<div class="list-item col-md-2 col-sm-2 col-xs-2" align="center"><a data-keyid="'+(keyid+1)+'"href="http://www.youtube.com/embed/' + item.id.videoId + '" data-id="' + item.id.videoId + '" class="video"><img src="' + item.snippet.thumbnails.default.url + '" class="thumb"></a><div class="videoTitle">' + item.snippet.title + '</div></div>');
           firstVideo = true;
         });
       });
