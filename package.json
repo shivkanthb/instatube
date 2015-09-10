@@ -1,0 +1,27 @@
+{
+  "name": "instatube",
+  "version": "1.0.0",
+  "description": "realtime youtube with keyboard controls and no ads",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "consolidate": "^0.13.1",
+    "express": "^4.13.3",
+    "path": "^0.11.14",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivkanthb/instatube.git"
+  },
+  "author": "shiv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivkanthb/instatube/issues"
+  },
+  "homepage": "https://github.com/shivkanthb/instatube#readme"
+}
